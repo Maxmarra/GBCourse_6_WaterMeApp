@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,73 +10,86 @@
             type="com.example.waterme.adapater.PlantListener" />
 
         <variable
+            name="shortClickListner"
+            type="com.example.waterme.adapater.ShortListener" />
+
+        <variable
             name="plant"
             type="com.example.waterme.model.Plant" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:onLongClick="@{() -> longClickListner.onLongClick(plant)}"
+        android:onClick="@{() -> shortClickListner.onShortClick(plant)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:onLongClick="@{() -> longClickListner.onLongClick(plant)}"
         app:cardElevation="4dp"
-        app:cardCornerRadius="4dp" >
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="10dp"
+        app:strokeColor="@android:color/background_light">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:text="@{plant.name}"
+            <ImageView
+                android:id="@+id/sportsImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="@null"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Name" />
+                app:srcCompat="@drawable/a"
+                app:imageUrl="@{plant.imageId}"
+                tools:srcCompat="@drawable/a" />
 
             <TextView
-                android:id="@+id/type"
-                android:layout_width="0dp"
+                android:id="@+id/title"
+                style="@style/SportsTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAppearance="?attr/textAppearanceBody1"
-                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:text="@{plant.name}"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/sportsImage"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
+            <TextView
+                android:id="@+id/newsTitle"
+                style="@style/SportsDetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="8dp"
                 android:text="@{plant.type}"
-                app:layout_constraintTop_toBottomOf="@id/name"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Type" />
+                android:textColor="?android:textColorSecondary"
+                app:layout_constraintStart_toEndOf="@+id/sportsImage"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/sub_title"
+                style="@style/SportsBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAppearance="?attr/textAppearanceBody1"
-                android:textColor="?android:attr/textColorSecondary"
-                android:text="@{plant.description}"
-                android:maxLines="2"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="end"
-                app:layout_constraintTop_toBottomOf="@id/type"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Description" />
-            
-            <TextView
-                android:id="@+id/schedule"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAppearance="?attr/textAppearanceBody1"
-                android:textColor="?android:attr/textColorSecondary"
-                android:text="@{@string/schedule(plant.schedule)}"
-                app:layout_constraintTop_toBottomOf="@id/description"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Water daily" />
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@{plant.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/sportsImage"
+                app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
 </layout>
+

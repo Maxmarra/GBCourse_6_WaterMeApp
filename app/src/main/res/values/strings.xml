@@ -4,4 +4,5 @@
     <string name="channel_name">water_channel</string>
     <string name="channel_description">water_reminder</string>
     <string name="water_reminder">Remind me to water in…</string>
+    <string name="my_pic">%s</string>
 </resources>

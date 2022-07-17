@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.waterme.databinding.ListItemBinding
 import com.example.waterme.model.Plant
 
-class PlantAdapter(private val longClickListener: PlantListener) :
+class PlantAdapter(
+    private val longClickListener: PlantListener,
+    private val shortClickListener: ShortListener
+    ) :
     ListAdapter<Plant, PlantAdapter.PlantViewHolder>(DiffCallback) {
 
     class PlantViewHolder(
@@ -17,10 +20,12 @@ class PlantAdapter(private val longClickListener: PlantListener) :
 
         fun bind(
             longClickListener: PlantListener,
+            shortClickListener: ShortListener,
             plant: Plant
         ) {
             binding.plant = plant
             binding.longClickListner = longClickListener
+            binding.shortClickListner = shortClickListener
             binding.executePendingBindings()
         }
     }
@@ -45,10 +50,15 @@ class PlantAdapter(private val longClickListener: PlantListener) :
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         val plant = getItem(position)
-        holder.bind(longClickListener, plant)
+        holder.bind(longClickListener, shortClickListener, plant)
     }
 }
 
 class PlantListener(val longClickListener: (plant: Plant) -> Boolean) {
     fun onLongClick(plant: Plant) = longClickListener(plant)
 }
+
+class ShortListener(val shortClickListener: (plant: Plant) -> Unit) {
+    fun onShortClick(plant: Plant) = shortClickListener(plant)
+}
+

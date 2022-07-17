@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Sports.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="Theme.Sports.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="SportsDetailText" parent="TextAppearance.MaterialComponents.Headline6" />
+
+    <style name="SportsBody" parent="TextAppearance.MaterialComponents.Body1" />
+
+    <style name="SportsTitle" parent="TextAppearance.MaterialComponents.Headline5"/>
+
 </resources>

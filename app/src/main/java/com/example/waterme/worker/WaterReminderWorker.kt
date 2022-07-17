@@ -29,8 +29,11 @@ class WaterReminderWorker(
 
         val plantName = inputData.getString(nameKey)
 
-        val builder = NotificationCompat.Builder(applicationContext, BaseApplication.CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_android_black_24dp)
+        val builder = NotificationCompat.Builder(
+            applicationContext,
+            BaseApplication.CHANNEL_ID
+        )
+            .setSmallIcon(R.drawable.a)
             .setContentTitle("Water me!")
             .setContentText("It's time to water your $plantName")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
